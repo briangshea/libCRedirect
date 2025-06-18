@@ -1,0 +1,66 @@
+/*
+ * This file is part of libCRedirect.
+ *
+ * libCRedirect is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * libCRedirect is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with libCRedirect. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright (C) Brian G Shea <bgshea@gmail.com>
+ */
+#ifndef __@PROJECT_NAME@_CONFIG_H__
+#define __@PROJECT_NAME@_CONFIG_H__
+
+#define LIB_CREDIRECT_VERSION_MAJOR @LIB_CREDIRECT_VERSION_MAJOR@
+#define LIB_CREDIRECT_VERSION_MINOR @LIB_CREDIRECT_VERSION_MINOR@
+#define LIB_CREDIRECT_VERSION_PATCH @LIB_CREDIRECT_VERSION_PATCH@
+#define LIB_CREDIRECT_VERSION ((LIB_CREDIRECT_VERSION_MAJOR)<<24) | \
+                              ((LIB_CREDIRECT_VERSION_MINOR)<<16) | \
+                              ((LIB_CREDIRECT_VERSION_PATCH)<<8) 
+
+#cmakedefine LIB_CREDIRECT_ENABLE_CERR
+#cmakedefine LIB_CREDIRECT_ENABLE_CLOG
+#cmakedefine LIB_CREDIRECT_ENABLE_COUT
+#cmakedefine LIB_CREDIRECT_AUTOSTART_CERR
+#cmakedefine LIB_CREDIRECT_AUTOSTART_CLOG
+#cmakedefine LIB_CREDIRECT_AUTOSTART_COUT
+#cmakedefine LIB_CREDIRECT_NAMESPACE @LIB_CREDIRECT_NAMESPACE@
+#cmakedefine LIB_CREDIRECT_INITIAL_BUFFER_SIZE @LIB_CREDIRECT_INITIAL_BUFFER_SIZE@
+
+#ifndef LIB_CREDIRECT_INITIAL_BUFFER_SIZE
+# define LIB_CREDIRECT_INITIAL_BUFFER_SIZE 1024
+#endif
+
+#ifdef __GNUC__
+# define HIDDEN __attribute__((visibility("hidden")))
+# ifdef LIB_CREDIRECT_SHARED
+#  define LIB_CREDIRECT_EXPORT __attribute__((visibility("default")))
+# else
+#  define LIB_CREDIRECT_EXPORT
+# endif
+#elif MSVC
+# define HIDDEN
+# ifdef LIB_CREDIRECT_SHARED
+#  define LIB_CREDIRECT_EXPORT __declspec(dllexport)
+# else
+#  define LIB_CREDIRECT_EXPORT __declspec(dllimport)
+# endif
+#endif
+
+#ifdef LIB_CREDIRECT_NAMESPACE
+# define LIB_CREDIRECT_NAMESPACE_BEGIN namespace LIB_CREDIRECT_NAMESPACE {
+# define LIB_CREDIRECT_NAMESPACE_END }
+#else
+# define LIB_CREDIRECT_NAMESPACE_BEGIN
+# define LIB_CREDIRECT_NAMESPACE_END
+#endif
+
+#endif  // __@PROJECT_NAME@_CONFIG_H__
