@@ -39,20 +39,12 @@
 # define LIB_CREDIRECT_INITIAL_BUFFER_SIZE 1024
 #endif
 
+#include <CRedirect_export.h>
+
 #ifdef __GNUC__
 # define HIDDEN __attribute__((visibility("hidden")))
-# ifdef LIB_CREDIRECT_SHARED
-#  define LIB_CREDIRECT_EXPORT __attribute__((visibility("default")))
-# else
-#  define LIB_CREDIRECT_EXPORT
-# endif
 #elif MSVC
 # define HIDDEN
-# ifdef LIB_CREDIRECT_SHARED
-#  define LIB_CREDIRECT_EXPORT __declspec(dllexport)
-# else
-#  define LIB_CREDIRECT_EXPORT __declspec(dllimport)
-# endif
 #endif
 
 #ifdef LIB_CREDIRECT_NAMESPACE

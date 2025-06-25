@@ -37,6 +37,7 @@ public:
      * This constructor initializes the ClogRedirect instance, setting up the necessary
      * stream redirection and observer notification mechanisms.
      */
+    CREDIRECT_EXPORT
     ClogRedirect();
 
     /**
@@ -45,6 +46,7 @@ public:
      * This destructor cleans up the resources used by the ClogRedirect instance,
      * restoring std::clog to its original state.
      */
+    CREDIRECT_EXPORT
     ~ClogRedirect();
     
     /**
@@ -55,6 +57,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to attach.
      */
+    CREDIRECT_EXPORT
     static void attach(StreamObserver* observer);
 
     /**
@@ -65,6 +68,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to detach.
      */
+    CREDIRECT_EXPORT
     static void detach(StreamObserver* observer);
 
 private:
@@ -79,13 +83,6 @@ private:
     ClogRedirect(ClogRedirect&&) = delete;
     ClogRedirect& operator=(ClogRedirect&&) = delete;
     
-    /**
-     * @brief Monitors the std::clog stream for new lines.
-     * 
-     * This method is responsible for continuously monitoring the std::clog stream
-     * and notifying observers whenever a new line is written to it.
-     */
-    void monitorStream();
     /**
      * @brief Pointer to the StreamRedirect instance that manages the redirection of std::clog.
      * 

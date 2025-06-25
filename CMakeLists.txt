@@ -19,6 +19,8 @@
 cmake_minimum_required(VERSION 3.15...3.29)
 
 set(PROJECT_NAME CRedirect)
+string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UC)
+
 project(${PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
 
 #option(BUILD_SHARED_LIBS "Build shared libraries" ON)
@@ -59,6 +61,13 @@ add_library(${PROJECT_NAME}
     src/StreamRedirect.cpp
     src/SynchronousStreamBuf.cpp
     ${PROJECT_HEADERS}
+)
+
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME}
+    EXPORT_FILE_NAME ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}/${PROJECT_NAME}_export.h
+    BASE_NAME ${PROJECT_NAME}
+    EXPORT_MACRO_NAME ${PROJECT_NAME_UC}_EXPORT
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

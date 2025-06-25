@@ -37,6 +37,7 @@ public:
      * This constructor initializes the CoutRedirect instance, setting up the necessary
      * stream redirection and observer notification mechanisms.
      */
+    CREDIRECT_EXPORT
     CoutRedirect();
 
     /**
@@ -45,6 +46,7 @@ public:
      * This destructor cleans up the resources used by the CoutRedirect instance,
      * restoring std::cout to its original state.
      */
+    CREDIRECT_EXPORT
     ~CoutRedirect();
     
     /**
@@ -55,6 +57,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to attach.
      */
+    CREDIRECT_EXPORT
     static void attach(StreamObserver* observer);
     
     /**
@@ -65,6 +68,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to detach.
      */
+    CREDIRECT_EXPORT
     static void detach(StreamObserver* observer);
 
 private:
@@ -78,14 +82,7 @@ private:
     CoutRedirect& operator=(const CoutRedirect&) = delete;
     CoutRedirect(CoutRedirect&&) = delete;
     CoutRedirect& operator=(CoutRedirect&&) = delete;
-    /**
-     * @brief Monitors the std::cout stream for new lines.
-     * 
-     * This method is responsible for continuously monitoring the std::cout stream
-     * and notifying observers whenever a new line is written to it.
-     */
-    void monitorStream();
-
+    
     /**
      * @brief Pointer to the StreamRedirect instance that manages the redirection of std::cout.
      * 

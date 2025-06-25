@@ -44,6 +44,7 @@ public:
      * This constructor initializes the CerrRedirect instance, setting up the necessary
      * stream redirection and observer notification mechanisms.
      */
+    CREDIRECT_EXPORT
     CerrRedirect();
 
     /**
@@ -52,6 +53,7 @@ public:
      * This destructor cleans up the resources used by the CerrRedirect instance,
      * restoring std::cerr to its original state.
      */
+    CREDIRECT_EXPORT
     ~CerrRedirect();
 
     /**
@@ -62,7 +64,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to attach.
      */
-    
+    CREDIRECT_EXPORT
     static void attach(StreamObserver* observer);
     /**
      * @brief Detaches an observer from the CerrRedirect instance.
@@ -72,6 +74,7 @@ public:
      * 
      * @param observer Pointer to the StreamObserver instance to detach.
      */
+    CREDIRECT_EXPORT
     static void detach(StreamObserver* observer);
 
 private:    
@@ -85,13 +88,6 @@ private:
     CerrRedirect& operator=(const CerrRedirect&) = delete;
     CerrRedirect(CerrRedirect&&) = delete;
     CerrRedirect& operator=(CerrRedirect&&) = delete;
-    /**
-     * @brief Monitors the std::cerr stream for new lines.
-     * 
-     * This method is responsible for continuously monitoring the std::cerr stream
-     * and notifying observers whenever a new line is written to it.
-     */
-    void monitorStream();
     /**
      * @brief Pointer to the StreamRedirect instance that manages the redirection of std::cerr.
      * 
